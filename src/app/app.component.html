@@ -1,5 +1,9 @@
-<mat-list>
-    <app-receipt-view></app-receipt-view>
-    <mat-divider></mat-divider>
-    <app-receipt-upload></app-receipt-upload>
-</mat-list>
+<mat-grid-list cols="2" rowHeight="100em">
+    <mat-grid-tile>
+        <app-receipt-upload></app-receipt-upload>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <app-receipt-view></app-receipt-view>
+    </mat-grid-tile>
+  </mat-grid-list>
+  

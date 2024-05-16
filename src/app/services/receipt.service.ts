@@ -1,23 +1,23 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Receipt } from '../models/receipt';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReceiptService {
   private url: string;
+
   constructor(private http: HttpClient) {
     this.url = "http://localhost:8080/receipt";
    }
 
-  public findAll() {
-    return this.http.get(this.url);
+  getAll(): Observable<Receipt[]> {
+    return this.http.get<Receipt[]>(this.url);
   }
 
-  public uploadImage(formData: FormData) {
-    this.http.post('http://localhost:8080/receipt',formData).subscribe((res: any)=> {
-      // debugger
-        return true;
-      });
+  uploadImage(formData: FormData) {
+    return this.http.post(this.url, formData);
   }
 }
