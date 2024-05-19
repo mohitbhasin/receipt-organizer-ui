@@ -1,0 +1,7 @@
+<mat-dialog-content>
+    <p>{{data.content}}</p>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button mat-raised-button color="primary" [mat-dialog-close]="true" cdkFocusInitial>Accept</button>
+  <button mat-raised-button [mat-dialog-close]="data.id">Delete</button>
+</mat-dialog-actions>

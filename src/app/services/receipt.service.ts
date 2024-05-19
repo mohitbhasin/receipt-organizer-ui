@@ -17,7 +17,11 @@ export class ReceiptService {
     return this.http.get<Receipt[]>(this.url);
   }
 
+  deleteById(id: number): Observable<boolean> {
+    return this.http.delete<boolean>(this.url+"/"+id);
+  }
+
   uploadImage(formData: FormData) {
-    return this.http.post(this.url, formData);
+    return this.http.post<Receipt>(this.url, formData);
   }
 }

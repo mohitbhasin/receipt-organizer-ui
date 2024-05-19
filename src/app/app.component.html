@@ -1,9 +1,10 @@
-<mat-grid-list cols="2" rowHeight="100em">
-    <mat-grid-tile>
-        <app-receipt-upload></app-receipt-upload>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <app-receipt-view></app-receipt-view>
-    </mat-grid-tile>
-  </mat-grid-list>
-  
+<div style="background-color: #d3dfe1;">
+    <mat-grid-list class="mat-grid" cols="3" rowHeight="450px">
+        <mat-grid-tile colspan="2" rowspan="2">
+            <app-receipt-view></app-receipt-view>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="1">
+            <app-receipt-upload></app-receipt-upload>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
