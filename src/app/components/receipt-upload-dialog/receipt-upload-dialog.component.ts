@@ -3,12 +3,6 @@ import { MAT_DIALOG_DATA,MatDialogContent, MatDialogRef, MatDialogModule} from '
 import {MatButtonModule} from '@angular/material/button';
 import { Receipt } from '../../models/receipt';
 
-export interface DialogData {
-  animal: string;
-  name: string;
-}
-
-
 @Component({
   selector: 'app-receipt-upload-dialog',
   standalone: true,

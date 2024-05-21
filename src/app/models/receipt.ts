@@ -1,5 +1,6 @@
 export interface Receipt {
     id: number;
-    content: string;
-    date: string
+    description: string;
+    items: String[]
+    dateCreated: string
 }

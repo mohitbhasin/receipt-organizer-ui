@@ -1,12 +1,11 @@
 <mat-dialog-content>
-    <p>{{data.description}}</p>
-    @for(item of data.items; track item) {
+    @for(item of items; track item) {
       <li>
-        {{item}}
+        {{item.itemName}}
       </li>
     }
 </mat-dialog-content>
 <mat-dialog-actions align="center">
   <button mat-raised-button color="primary" [mat-dialog-close]="true" cdkFocusInitial>Accept</button>
-  <button mat-raised-button [mat-dialog-close]="data.id">Delete</button>
+  <button mat-raised-button [mat-dialog-close]="false">Delete</button>
 </mat-dialog-actions>

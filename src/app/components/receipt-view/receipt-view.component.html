@@ -10,9 +10,9 @@
           </ng-container>
         
           <!-- Receipt Content Column -->
-          <ng-container matColumnDef="receipt">
+          <ng-container matColumnDef="desc">
             <mat-header-cell *matHeaderCellDef>Receipt Content</mat-header-cell>
-            <mat-cell *matCellDef="let receipt"> {{receipt.content}} </mat-cell>
+            <mat-cell *matCellDef="let receipt"> {{receipt.description}} </mat-cell>
           </ng-container>
         
           <!-- Date Added Column -->
@@ -22,7 +22,7 @@
           </ng-container>
           
           <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
-          <mat-row (click)="display(row)" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          <mat-row (click)="displayByReceiptId(row.id)" *matRowDef="let row; columns: displayedColumns;"></mat-row>
         </mat-table>
     </div>
   

@@ -5,9 +5,10 @@ import {MatTableModule, MatTableDataSource } from '@angular/material/table';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import { Receipt } from '../../models/receipt';
 import {ScrollingModule} from '@angular/cdk/scrolling';
-import { ReceiptUploadDialogComponent } from '../receipt-upload-dialog/receipt-upload-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
+import { Item } from '../../models/item';
+import { ReceiptViewDialogComponent } from '../receipt-view-dialog/receipt-view-dialog.component';
 
 @Component({
   selector: 'app-receipt-view',
@@ -17,10 +18,10 @@ import { MatCardModule } from '@angular/material/card';
   imports: [MatListModule, MatTableModule, MatPaginatorModule, ScrollingModule, MatCardModule],
 })
 export class ReceiptViewComponent {
-  displayedColumns: string[] = ['id', 'receipt', 'date'];
+  displayedColumns: string[] = ['id', 'desc', 'date'];
   title: String;
   receipts: Receipt[] = [];
-  items = Array.from({length: 1000}).map((_, i) => `Item #${i}`);
+  items: Item[] = [];
   
   ELEMENT_DATA: Element[] = [];
   dataSource!: MatTableDataSource<Receipt>;
@@ -32,35 +33,34 @@ export class ReceiptViewComponent {
   }
 
   ngOnInit() {
+    this.refresh();
+  }
+
+  refresh() {
     this.service.getAll().subscribe(response => {
       this.dataSource = new MatTableDataSource<Receipt>(response);
       this.dataSource.paginator = this.paginator;
+      this.dataSource._updateChangeSubscription();
     });
   }
 
-  getReceipts(): void {
-    this.service.getAll().subscribe({
-      next: (data) => {
-        this.receipts = data;
-      },
-      error: (e) => console.error(e)
-    });
-  }
-
-  display(receipt: Receipt) {
-    console.log(receipt.id);
-    const dialogRef = this.dialog.open(ReceiptUploadDialogComponent, {
-      data: receipt
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if(result==true) {
-        console.log("Viewing Receipt "+ result);
-      } else if(result>0) {
-        console.log("discarding receipt with id: "+ result);
-        this.service.deleteById(result).subscribe((response => {
-        }));
-        console.log("receipt discarded");
-      }
-    });
+  displayByReceiptId(id: number){
+    this.service.getItemsByReceiptId(id).subscribe(result => {
+      this.items = result;
+      const dialogRef = this.dialog.open(ReceiptViewDialogComponent, {
+        data: this.items
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        if(result==true) {
+          console.log("Viewing Receipt "+ result);
+        } else if(result==false) {
+          console.log("discarding receipt with id: "+ id);
+          this.service.deleteById(id).subscribe((response => {
+            this.refresh();
+          }));
+          console.log("receipt discarded");
+        }
+      });
+    })
   }
 }
