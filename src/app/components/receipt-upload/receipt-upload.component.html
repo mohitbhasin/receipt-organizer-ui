@@ -1,0 +1,13 @@
+<div class="upload  mat-elevation-z24">
+  <mat-card class="upload-card">
+    <mat-card-header>
+      <mat-card-title>Upload Receipt Image</mat-card-title>
+      <mat-card-subtitle>(max size 5mb)</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div>
+        <input type="file" accept="image/png, image/jpeg" (change)="onChangeFile($event)" >
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

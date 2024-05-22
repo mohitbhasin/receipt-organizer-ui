@@ -1,0 +1,11 @@
+<mat-dialog-content>
+    @for(item of items; track item) {
+      <li>
+        {{item.itemName}}
+      </li>
+    }
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button mat-raised-button color="primary" [mat-dialog-close]="true" cdkFocusInitial>Accept</button>
+  <button mat-raised-button [mat-dialog-close]="false">Delete</button>
+</mat-dialog-actions>
