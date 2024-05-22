@@ -3,13 +3,12 @@ h2 {
 }
 
 .mat-table {
-    height: 700px;
+    height: 400px;
+    width: 800px;
     overflow: scroll;
   }
 
   .mat-body {
-    width: 90%;
-    margin: 50px;
     background-color: rgb(240, 240, 232);
   }
 
@@ -26,7 +25,7 @@ h2 {
   }
 
   .mat-column-date {
-    flex: 0 0 30%;
+    flex: 0 0 20%;
   }
 
   .mat-paginator {

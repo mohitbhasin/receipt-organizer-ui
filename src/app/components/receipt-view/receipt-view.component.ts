@@ -9,13 +9,14 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { Item } from '../../models/item';
 import { ReceiptViewDialogComponent } from '../receipt-view-dialog/receipt-view-dialog.component';
+import { CommonModule, DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-receipt-view',
   standalone: true,
   templateUrl: './receipt-view.component.html',
   styleUrl: './receipt-view.component.scss',
-  imports: [MatListModule, MatTableModule, MatPaginatorModule, ScrollingModule, MatCardModule],
+  imports: [MatListModule, MatTableModule, MatPaginatorModule, ScrollingModule, MatCardModule, CommonModule],
 })
 export class ReceiptViewComponent {
   displayedColumns: string[] = ['id', 'desc', 'date'];
@@ -28,7 +29,7 @@ export class ReceiptViewComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
 
-  constructor(private service: ReceiptService, private dialog: MatDialog) {
+  constructor(private service: ReceiptService, private dialog: MatDialog, private date: DatePipe) {
     this.title = "Displaying Receipts"
   }
 
