@@ -1,4 +1,4 @@
-# Receipt Organizer Ui
+# Receipt Organizer UI
 
 This is the UI for Receipt Organizer. The project digitize images of physical receipts and stores the content for viewing later.
 
