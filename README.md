@@ -1,27 +1,41 @@
-# ReceiptOrganizerUi
+# Receipt Organizer Ui
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.7.
+This is the UI for Receipt Organizer. The project digitize images of physical receipts and stores the content for viewing later.
 
-## Development server
+## Project Description
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+The uploaded image gets scanned for list of items having prices and stores them in database. Upon selecting the receipt title, itemized list of products is displayed with option to discard.
 
-## Code scaffolding
+TypeScript and Angular Framework have been used for the development as they have wide variety of libraries and features, including Material design components and client-server communication.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Some of the challenges faced during the developing were:
+- Setting up datasource for the table.
+- Setting up Dialog box for viewing the receipts.
 
-## Build
+Features for the future:
+- Adding search functionality for the items.
+- Adding sort functionality on the table.
+- Automatic refresh table after upload.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+![Image](https://github.com/mohitbhasin/receipt-organizer-ui/blob/develop/upload.gif?raw=true)
 
-## Running unit tests
+## How to run the project
+### Prerequisites
+- Make sure backend service is up and running (link - https://github.com/mohitbhasin/receipt-organizer)
+- Running latest version of node.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Setup and Run
+- Clone the repository, install dependencies and start the application:
+```
+$git clone https://github.com/mohitbhasin/receipt-organizer-ui.git
 
-## Running end-to-end tests
+$cd receipt-organizer-ui
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+$npm install
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+$ng serve
+```
+## How to use the project
+- Click the browse button to select the image of the receipt to upload.
+- The dialog will appear with the list of items that have been read. Choose to accept or delete.
+- Historical receipts can be viewed by selecting desired title from the table.
