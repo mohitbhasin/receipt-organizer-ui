@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ReceiptViewComponent } from './components/receipt-view/receipt-view.component';
 import { ReceiptUploadComponent } from './components/receipt-upload/receipt-upload.component';
@@ -26,4 +26,9 @@ import { MatCardModule } from '@angular/material/card';
 })
 export class AppComponent {
   title = 'receipt-organizer-ui';
+  @ViewChild(ReceiptViewComponent) receiptViewComponent!: ReceiptViewComponent;
+
+  refreshReceiptView() {
+    this.receiptViewComponent.refresh();
+  }
 }

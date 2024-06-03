@@ -1,15 +1,9 @@
-import { Component, Inject } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ReceiptService } from '../../services/receipt.service';
-import {MatIconModule} from '@angular/material/icon';
-import {MatDividerModule} from '@angular/material/divider';
-import { MatButtonModule } from '@angular/material/button'
-import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatCardModule} from '@angular/material/card';
 import { ReceiptUploadDialogComponent } from '../receipt-upload-dialog/receipt-upload-dialog.component';
 import { Receipt } from '../../models/receipt';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogRef, MatDialogTitle } from '@angular/material/dialog';
-import { FormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-receipt-upload',
@@ -23,8 +17,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 })
 
 export class ReceiptUploadComponent {
+  @Output() refreshEvent = new EventEmitter();
+
   isUploaded: boolean;
-  animal!: string;
   constructor(private service: ReceiptService, private dialog: MatDialog) {
     this.isUploaded = false;
   }
@@ -36,6 +31,7 @@ export class ReceiptUploadComponent {
       formData.append ('file', file);
       this.service.uploadImage(formData).subscribe((response => {
         this.isUploaded = true;
+        this.refreshEvent.emit();
         this.openDialog(response);
       }));
     }
@@ -50,8 +46,8 @@ export class ReceiptUploadComponent {
       } else if(result>0) {
         console.log("discarding receipt with id: "+ result);
         this.service.deleteById(result).subscribe((response => {
+          this.refreshEvent.emit();
         }));
-        console.log("receipt discarded");
       }
     });
   }
